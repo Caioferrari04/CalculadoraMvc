@@ -1,0 +1,16 @@
+@model SelectList
+
+<form asp-action="Resultado" class="d-flex justify-content-evenly flex-column">
+    <label for="Numeros" class="form-label">Numero1</label>
+    <div class="input-group mb-3">
+        <input type="text" name="Numero1" class="form-control" placeholder="Insira um número">
+    </div>
+    <label for="Numeros" class="form-label d-block">Numero2</label>
+    <div class="input-group mb-3">
+        <input type="text" name="Numero2" class="form-control d-block" placeholder="Insira um número">
+    </div>
+    <div class="input-group mb-3">
+        @Html.DropDownList("TipoOperacao", Model, "Selecionar operação", new { @class = "form-select", required = "true" })
+    </div>
+    <button type="submit" class="btn btn-primary">Calcular</button>
+</form>
