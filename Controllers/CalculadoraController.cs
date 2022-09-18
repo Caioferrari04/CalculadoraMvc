@@ -38,7 +38,8 @@ public class CalculadoraController : Controller
                 break;
             }
             default: {
-                throw new System.Exception("ahhhhhhhhhhhhhhhhhhh");
+                operacao.Resultado = "Operação inválida";
+                return View(operacao);
             }
         }
 
