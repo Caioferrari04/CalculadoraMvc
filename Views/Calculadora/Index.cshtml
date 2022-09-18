@@ -1,16 +1,21 @@
-@model SelectList
+@model Operacao
 
-<form asp-action="Resultado" class="d-flex justify-content-evenly flex-column">
-    <label for="Numeros" class="form-label">Numero1</label>
-    <div class="input-group mb-3">
-        <input type="text" name="Numero1" class="form-control" placeholder="Insira um número">
+<form asp-action="Resultado" class="needs-validation row gy-4 w-50 mx-auto">
+    <div class="col-12">
+        <label for="Numero1" class="form-label">Numero 1</label>
+        <input asp-for="Numero1" class="form-control" placeholder="Insira um número">
     </div>
-    <label for="Numeros" class="form-label d-block">Numero2</label>
-    <div class="input-group mb-3">
-        <input type="text" name="Numero2" class="form-control d-block" placeholder="Insira um número">
+    <div class="col-12">
+        <label for="Numero2" class="form-label d-block">Numero 2</label>
+        <input asp-for="Numero2" class="form-control" placeholder="Insira um número">
     </div>
-    <div class="input-group mb-3">
-        @Html.DropDownList("TipoOperacao", Model, "Selecionar operação", new { @class = "form-select", required = "true" })
+    <div>
+        <select asp-for="TipoOperacao" class="form-select">
+            <option value="soma">Soma</option>
+            <option value="multiplicação">Multiplicação</option>
+            <option value="divisão">Divisão</option>
+            <option value="subtração">Subtração</option>
+        </select>
     </div>
     <button type="submit" class="btn btn-primary">Calcular</button>
 </form>

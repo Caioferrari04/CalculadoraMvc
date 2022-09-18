@@ -8,52 +8,41 @@ namespace CalculadoraMvc.Controllers;
 
 public class CalculadoraController : Controller
 {
-    public IActionResult Index() {
-        List<SelectListItem> listItems = new List<SelectListItem>();
-        listItems.Add(new SelectListItem() { Text = "Soma", Value = "soma", Selected = true });
-        listItems.Add(new SelectListItem() { Text = "Multiplicação", Value = "multiplicação" });
-        listItems.Add(new SelectListItem() { Text = "Divisão", Value = "divisão" });
-        listItems.Add(new SelectListItem() { Text = "Subtração", Value = "subtração" });
-
-        return View(new SelectList(listItems.AsEnumerable<SelectListItem>(), "Value", "Text"));
-    } 
+    public IActionResult Index() => View();
+    
     [HttpPost]
     public IActionResult Resultado(Operacao operacao) 
     {
-        var resultado = "";
         double calculo = operacao.Numero1;
 
         switch (operacao.TipoOperacao)
         {
             case "soma": {
-                resultado += $"A soma de {operacao.Numero1} +";
-                calculo += operacao.Numero1;
+                operacao.Resultado += $"A soma de {operacao.Numero1} +";
+                calculo += operacao.Numero2;
                 break;
             }
             case "multiplicação": {
-                resultado += $"A multiplicação de {operacao.Numero1} *";
-                calculo *= operacao.Numero1;
+                operacao.Resultado += $"A multiplicação de {operacao.Numero1} *";
+                calculo *= operacao.Numero2;
                 break;
             }
             case "divisão": {
-                resultado += $"A divisão de {operacao.Numero1} /";
-                calculo /= operacao.Numero1;
+                operacao.Resultado += $"A divisão de {operacao.Numero1} /";
+                calculo /= operacao.Numero2;
                 break;
             }
             case "subtração": {
-                resultado += $"A subtração de {operacao.Numero1} -";
-                calculo -= operacao.Numero1;
+                operacao.Resultado += $"A subtração de {operacao.Numero1} -";
+                calculo -= operacao.Numero2;
                 break;
             }
             default: {
                 throw new System.Exception("ahhhhhhhhhhhhhhhhhhh");
             }
         }
-        
-        
-        resultado += $" {operacao.Numero2} é igual à {calculo}";
 
-        operacao.Resultado = resultado;
+        operacao.Resultado += $" {operacao.Numero2} é igual à {calculo}";
 
         return View(operacao);
     } 
